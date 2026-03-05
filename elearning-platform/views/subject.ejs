@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/style.css">
+<title>Subject</title>
+</head>
+
+<body>
+
+<h1><%= subject.name %></h1>
+
+<a href="/dashboard">Back</a>
+
+<h2>Topics</h2>
+
+<% topics.forEach(topic => { %>
+
+<div style="border:1px solid black; padding:10px; margin:10px;">
+
+<h3><%= topic.title %></h3>
+
+<a href="/topic/<%= topic._id %>">
+<button>Open Topic</button>
+</a>
+
+</div>
+
+<% }) %>
+
+</body>
+</html>

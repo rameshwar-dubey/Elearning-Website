@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/style.css">
+<title>Dashboard</title>
+</head>
+
+<body>
+
+<h1>Your Dashboard</h1>
+
+<a href="/logout">Logout</a>
+
+<h2>Subjects</h2>
+
+<% subjects.forEach(subject => { %>
+
+<div style="border:1px solid black; padding:10px; margin:10px;">
+
+<h3><%= subject.name %></h3>
+
+<a href="/subject/<%= subject._id %>">
+<button>Start Learning</button>
+</a>
+
+</div>
+
+<% }) %>
+
+</body>
+</html>

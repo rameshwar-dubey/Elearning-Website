@@ -11,8 +11,8 @@ const { checkAuth } = require("../middleware/auth");
     // Home page
 router.get("/", async (req, res) => {
     const subjects = await Subject.find();
-    //res.render("home", { subjects });
-    res.json(subjects);
+    res.render("home", { subjects });
+    // res.json(subjects);
 });
 
 
@@ -33,7 +33,7 @@ router.get("/topic/:id", checkAuth, async (req, res) => {
     const topic = await Topic.findById(req.params.id);
     const user = await User.findById(req.user.id);
 
-    // topics of same subject in order...
+    // topics of same subject in order
     const topics = await Topic.find({ subject: topic.subject })
                               .sort({ order: 1 });
 

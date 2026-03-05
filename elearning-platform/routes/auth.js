@@ -13,28 +13,42 @@ router.get("/register", (req, res) => {
 
             //rehister login
 router.post("/register", async (req, res) => {
-    const { name, email, password } = req.body;
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-        return res.send("User already exists");
-    }
+ const { name, email, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+ const existingUser = await User.findOne({ email });
 
-    const user = await User.create({
-        name,
-        email,
-        password: hashedPassword
-    });
+ if (existingUser) {
+  return res.send("User already exists");
+ }
 
-    res.redirect("/login");
+ const hashedPassword = await bcrypt.hash(password, 10);
+
+ const user = await User.create({
+  name,
+  email,
+  password: hashedPassword
+ });
+
+ // JWT token generate
+ const token = jwt.sign(
+  { id: user._id },
+  "mysecretkey",
+  { expiresIn: "1d" }
+ );
+
+ // cookie set
+ res.cookie("token", token, { httpOnly: true });
+
+ // dashboard pe redirect
+ res.redirect("/dashboard");
+
 });
 
             // login
 router.get("/login", (req, res) => {
-    //res.render("login");
-     res.send("Please login first");
+    res.render("login");
+    //  res.send("Please login first");
 });
 
 // login logic
@@ -64,8 +78,8 @@ router.post("/login", async (req, res) => {
 //  Dashboard
 router.get("/dashboard", async (req, res) => {
     const subjects = await require("../models/Subject").find();
-    //res.render("dashboard", { subjects });
-    res.json(subjects);
+    res.render("dashboard", { subjects });
+    // res.json(subjects);
 });
 
 // logout

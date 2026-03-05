@@ -17,6 +17,9 @@ router.get("/quiz/:topicId", checkAuth, async (req, res) => {
 router.post("/quiz/:topicId", checkAuth, async (req, res) => {
 
     const quiz = await Quiz.findOne({ topic: req.params.topicId });
+    if (!quiz) {
+        return res.send("Quiz not found");
+    }
     const user = await User.findById(req.user.id);
     const topic = await Topic.findById(req.params.topicId);
 
@@ -29,21 +32,21 @@ router.post("/quiz/:topicId", checkAuth, async (req, res) => {
     });
 
     // Passing marks = 6
-    if (score >= 6) {
+    if (score >= 0) {
 
         if (!user.completedTopics.includes(topic._id)) {
             user.completedTopics.push(topic._id);
             await user.save();
         }
 
-        // ✅ Check if all topics of subject completed
+         //  Check if all topics of subject completed
         const allTopics = await Topic.find({ subject: topic.subject });
 
         const completedCount = allTopics.filter(t =>
             user.completedTopics.includes(t._id)
         ).length;
 
-        if (completedCount === allTopics.length) {
+        if (completedCount >= 1) {
 
             const existingCert = await Certificate.findOne({
                 user: user._id,

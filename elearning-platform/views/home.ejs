@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>E-Learning Platform</title>
+</head>
+<body>
+
+<h1>Welcome to E-Learning Platform</h1>
+
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+
+<h2>Available Subjects</h2>
+
+<% subjects.forEach(subject => { %>
+    <div style="border:1px solid black; padding:10px; margin:10px;">
+        <h3><%= subject.name %></h3>
+        <p><%= subject.description %></p>
+
+        <a href="/subject/<%= subject._id %>">
+            <button>View Topics</button>
+        </a>
+    </div>
+<% }) %>
+
+</body>
+</html>

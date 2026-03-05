@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/style.css">
+<title>Quiz</title>
+</head>
+
+<body>
+
+<h1>Quiz</h1>
+
+<% if (quiz && quiz.questions) { %>
+
+<form method="POST">
+
+<% quiz.questions.forEach((q,index)=>{ %>
+
+<div style="border:1px solid black; padding:10px; margin:10px;">
+
+<p><%= q.question %></p>
+
+<% q.options.forEach((opt,i)=>{ %>
+
+<input type="radio" name="q<%= index %>" value="<%= i %>" required>
+<%= opt %>
+<br>
+
+<% }) %>
+
+</div>
+
+<% }) %>
+
+<button type="submit">Submit Quiz</button>
+
+</form>
+
+<% } else { %>
+
+<h2>No quiz available for this topic.</h2>
+
+<% } %>
+
+</body>
+</html>
