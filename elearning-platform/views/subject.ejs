@@ -7,15 +7,15 @@
 
 <body>
 
-<h1><%= subject.name %></h1>
+<header>
+<h2><%= subject.name %></h2>
+</header>
 
-<a href="/dashboard">Back</a>
-
-<h2>Topics</h2>
+<div class="container">
 
 <% topics.forEach(topic => { %>
 
-<div style="border:1px solid black; padding:10px; margin:10px;">
+<div class="card">
 
 <h3><%= topic.title %></h3>
 
@@ -27,5 +27,6 @@
 
 <% }) %>
 
+</div>
 </body>
 </html>

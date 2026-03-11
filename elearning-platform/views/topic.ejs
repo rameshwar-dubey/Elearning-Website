@@ -6,16 +6,19 @@
 </head>
 
 <body>
+<div class="topic">
+    <h1><%= topic.title %></h1>
 
-<h1><%= topic.title %></h1>
+    <p><%= topic.content %></p>
 
-<p><%= topic.content %></p>
+    <br>
 
-<br>
+    <a href="/quiz/<%= topic._id %>">
+    <button>Take Quiz</button>
+    </a>
 
-<a href="/quiz/<%= topic._id %>">
-<button>Take Quiz</button>
-</a>
+</div>
+
 
 </body>
 </html>

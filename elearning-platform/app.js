@@ -15,6 +15,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/elearning")
         // Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(express.static("public"));
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");

@@ -7,22 +7,27 @@
 
 <body>
 
-<h1>Quiz</h1>
+<header>
+<h2>Quiz</h2>
+</header>
 
-<% if (quiz && quiz.questions) { %>
+<div class="container">
 
 <form method="POST">
 
 <% quiz.questions.forEach((q,index)=>{ %>
 
-<div style="border:1px solid black; padding:10px; margin:10px;">
+<div class="quiz-box">
 
-<p><%= q.question %></p>
+<p><b>Q<%= index+1 %>. <%= q.question %></b></p>
 
 <% q.options.forEach((opt,i)=>{ %>
 
+<label>
 <input type="radio" name="q<%= index %>" value="<%= i %>" required>
 <%= opt %>
+</label>
+
 <br>
 
 <% }) %>
@@ -35,11 +40,7 @@
 
 </form>
 
-<% } else { %>
-
-<h2>No quiz available for this topic.</h2>
-
-<% } %>
+</div>
 
 </body>
 </html>

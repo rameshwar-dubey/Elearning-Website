@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <link rel="stylesheet" href="/css/style.css">
 <title>Dashboard</title>
@@ -7,17 +8,26 @@
 
 <body>
 
-<h1>Your Dashboard</h1>
-
+<header>
+<h2>E-Learning Platform</h2>
 <a href="/logout">Logout</a>
+</header>
 
-<h2>Subjects</h2>
+
+
+<div class="container">
+
+<h2>Your Subjects</h2>
+
+<div class="subject-grid">
 
 <% subjects.forEach(subject => { %>
 
-<div style="border:1px solid black; padding:10px; margin:10px;">
+<div class="card">
 
 <h3><%= subject.name %></h3>
+
+<p>Start learning this subject</p>
 
 <a href="/subject/<%= subject._id %>">
 <button>Start Learning</button>
@@ -26,6 +36,10 @@
 </div>
 
 <% }) %>
+
+</div>
+
+</div>
 
 </body>
 </html>

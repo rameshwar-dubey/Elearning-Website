@@ -4,12 +4,11 @@
 <link rel="stylesheet" href="/css/style.css">
 <title>Certificate</title>
 </head>
-
-<body style="text-align:center">
+<div class="certificate">
 
 <h1>Certificate of Completion</h1>
 
-<p>This certificate is awarded to</p>
+<p>This certificate is proudly awarded to</p>
 
 <h2><%= cert.user.name %></h2>
 
@@ -18,6 +17,8 @@
 <h3><%= cert.subject.name %></h3>
 
 <p>Certificate ID: <%= cert.certificateId %></p>
+
+</div>
 
 </body>
 </html>
